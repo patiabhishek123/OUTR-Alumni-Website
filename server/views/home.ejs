@@ -6,17 +6,16 @@
       body {
         background-color: skyblue;
         text-decoration-color: white;
-        font-size: 5em;
       }
     </style>
   </head>
   <body>
     <p>Hobbies of <%=data.name%> are:</p>
-    <br />
-    <ul>
-      <% data.hobbies.forEach((item)=>{%>
-      <li><%=item%></li>
-      <%});%>
-    </ul>
+    <ol>
+      <li><%=data.hobbies[0]%></li>
+      <li><%=data.hobbies[1]%></li>
+      <li><%=data.hobbies[2]%></li>
+    </ol>
+    <p>Hello World</p>
   </body>
 </html>

@@ -8,7 +8,6 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-
     // The render method takes the name of the html
     // page to be rendered as input.
     // This page should be in views folder 
