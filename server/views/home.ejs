@@ -1,21 +1,112 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Home Page</title>
-    <style type="text/css" media="screen">
-      body {
-        background-color: skyblue;
-        text-decoration-color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <p>Hobbies of <%=data.name%> are:</p>
-    <ol>
-      <li><%=data.hobbies[0]%></li>
-      <li><%=data.hobbies[1]%></li>
-      <li><%=data.hobbies[2]%></li>
-    </ol>
-    <p>Hello World</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    src="https://kit.fontawesome.com/2af254fe4c.js"
+    crossorigin="anonymous"
+  ></script>
+  <title>Alumni Website</title>
+</head>
+<body class="bg-[#efece5]">
+  <div class="sticky top-0 bg-white drop-shadow-xl backdrop-blur-3xl">
+    <nav class="flex justify-between items-center px-2 py-4">
+      <div class="flex items-center">
+        <img
+          class="w-20"
+          src="https://upload.wikimedia.org/wikipedia/en/b/bd/Odisha_University_of_Technology_and_Research_Logo.png"
+          alt="..."
+        />
+        <div class="ml-2 leading-5">
+          <p class="font-semibold text-violet-900">Odisha University of Technology and Research</p>
+          <p class="font-semibold text-violet-900">Bhubaneswar (Formerly CET Bhubaneswar)</p>
+          <p class="text-gray-500">Alumni Association</p>
+        </div>
+      </div>
+      <div class="flex justify-between items-center">
+        <div class="nav-links lg:static absolute lg:min-h-fit bg-slate-100 lg:bg-white right-0 top-[-1000%] lg:w-auto w-full flex items-start justify-center px-5">
+          <ul class="flex lg:flex-row flex-col lg:items-center items-center lg:gap-[2vw] gap-8 text-lg lg:text-sm xl:text-lg font-bold my-8">
+            <li>
+              <span><a href="#">ABOUT US</a></span>
+            </li>
+            <li>
+              <a href="#">GIVING BACK</a>
+            </li>
+            <li>
+              <a href="#">CHAPTERS</a>
+            </li>
+            <li>
+              <a href="#">MEMBERS</a>
+            </li>
+            <li>
+              <a href="#">ALUMNI ASSIST</a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center">
+          <i class="fa-solid fa-magnifying-glass ml-2 px-4 py-3 bg-white text-2xl cursor-pointer"></i>
+          <ion-icon onclick="onToggleMenu(this)" name="menu" class="ml-2 px-4 py-4 bg-white text-3xl cursor-pointer lg:hidden"></ion-icon>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="h-96 w-full bg-red-500" style="background: bottom/cover url('https://outr.ac.in/public/uploads/b1_2.jpg'); object-fit: cover;">
+    <div class="ml-4 pt-4">
+      <p class="text-white text-3xl font-bold">Where You Belong</p>
+      <p class="w-1/2 lg:w-1/4 text-white text-lg font-semibold leading-5">Welcome to the Odisha University of Technology and Research Bhubaneswar (Formerly CET Bhubaneswar)</p>
+    </div>
+  </div>
+  <div class="w-full px-8 py-4 bg-blue-800 flex justify-center items-center text-white">
+    <p class="underline font-semibold lg:text-xl">Learn about the progress of the OUTRTogether campaign.</p>
+    <i class="fa-solid fa-arrow-right ml-2 pt-1"></i>
+  </div>
+
+  <div class="p-16 flex flex-col gap-24 lg:flex-row items-center">
+    <div class="h-96 w-full bg-white flex flex-col gap-2.5 justify-center items-center border-b-8 border-blue-800">
+      <i class="fa-regular fa-calendar-days text-blue-800 text-5xl"></i>
+      <div class="flex flex-col gap-8">
+        <div class="mx-5 text-center">
+          <p class="text-3xl font-bold text-blue-800">Attend an event</p>
+          <p>Learn, engage, and celebrate with fellow OUTRians.</p>
+        </div>
+        <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">Find Events</button>
+      </div>
+    </div>
+    <div class="h-96 w-full bg-white flex flex-col gap-2.5 justify-center items-center border-b-8 border-blue-800">
+      <i class="fa-solid fa-sheet-plastic text-blue-800 text-5xl"></i>
+      <div class="flex flex-col gap-8">
+        <div class="mx-5 text-center">
+          <p class="text-3xl font-bold text-blue-800">Share you talent</p>
+          <p>Be ever true. Volunteer your time and expertise</p>
+        </div>
+        <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">Find Oppurtunities</button>
+      </div>
+    </div>
+    <div class="h-96 w-full bg-white flex flex-col gap-2.5 justify-center items-center border-b-8 border-blue-800">
+      <i class="fa-solid fa-church text-blue-800 text-6xl"></i>
+      <div class="flex flex-col gap-8">
+        <div class="mx-5 text-center">
+          <p class="text-3xl font-bold text-blue-800">Explore communities</p>
+          <p>Expand your OUTR experience by club, class, affinity, or cause.</p>
+        </div>
+        <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">Find Communities</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const navLinks = document.querySelector('.nav-links');
+
+    function onToggleMenu(e) {
+      e.name = e.name === 'menu' ? 'close' : 'menu';
+      navLinks.classList.toggle('top-[100%]');
+      console.log(navLinks.classList);
+    }
+  </script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
 </html>
