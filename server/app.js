@@ -11,7 +11,9 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const flash = require("connect-flash");
 const ValidRegistration = require("./models/validRegd");
+const alumniData = require("./models/alumniSchema");
 const port = process.env.PORT || 4000;
+console.log(typeof alumniData);
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -77,8 +79,15 @@ app.get("/login", (req, res) => {
 
 app.get("/secrets", (req, res) => {
   if (req.isAuthenticated()) {
-    //Here render the required page later
-    res.send("Authorization Complete , This is Protected Page");
+    alumniData.find({}) // This will return a promise
+      .then(alumniList => {
+        // alumniList is now an array of alumni objects
+        res.render("alumni", { alumniList });
+      })
+      .catch(err => {
+        console.error(err); // Log the error for debugging
+        res.redirect("/login"); // Redirect or handle the error appropriately
+      });
   } else {
     res.redirect("/login");
   }

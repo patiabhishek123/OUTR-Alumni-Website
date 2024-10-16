@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alumni Directory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Search and Filters Section -->
+  <div class="flex flex-col items-center gap-4 my-6 md:flex-row md:justify-center">
+    <input type="text" id="search-name" placeholder="Search by name..." class="px-4 py-2 border rounded-lg shadow-sm w-full max-w-xs">
+    <select id="filter-batch" class="px-4 py-2 border rounded-lg shadow-sm w-full max-w-xs">
+      <option value="">Batch</option>
+      <option value="2020">2020</option>
+      <option value="2019">2019</option>
+    </select>
+    <select id="filter-branch" class="px-4 py-2 border rounded-lg shadow-sm w-full max-w-xs">
+      <option value="">Branch</option>
+      <option value="Computer Science">Computer Science</option>
+      <option value="Mechanical Engineering">Mechanical Engineering</option>
+    </select>
+    <button id="apply-filters" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">Apply Filters</button>
+  </div>
+
+  <!-- Alumni Cards Section -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6" id="alumni-cards">
+    <% alumniList.forEach(alumni => { %>
+      <div class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition duration-300">
+        <img src="<%= alumni.image %>" alt="<%= alumni.name %>" class="rounded-md w-full h-48 object-cover mb-4">
+        <h3 class="text-xl font-semibold mt-2"><%= alumni.name %></h3>
+        <p class="text-gray-600">Batch: <%= alumni.batch %></p>
+        <p class="text-gray-600">Branch: <%= alumni.branch %></p>
+        <p class="text-gray-600">Company: <%= alumni.company %></p>
+        <a href="<%= alumni.linkedin %>" target="_blank" class="text-blue-500 mt-2 block hover:underline">LinkedIn Profile</a>
+        <button onclick="showAlumniDetails('<%= alumni._id %>')" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2 hover:bg-blue-600 transition">View Details</button>
+      </div>
+    <% }) %>
+  </div>
+
+  <!-- Alumni Details Modal -->
+  <div id="alumni-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center hidden">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-96 text-center">
+      <span class="text-red-500 text-2xl cursor-pointer close">&times;</span>
+      <h3 id="alumni-name" class="text-2xl font-semibold mt-4"></h3>
+      <p id="alumni-age" class="text-gray-600"></p>
+      <p id="alumni-gender" class="text-gray-600"></p>
+      <p id="alumni-batch" class="text-gray-600"></p>
+      <p id="alumni-branch" class="text-gray-600"></p>
+      <p id="alumni-company" class="text-gray-600"></p>
+      <a id="alumni-linkedin" href="#" target="_blank" class="text-blue-500 mt-4 block hover:underline">LinkedIn Profile</a>
+    </div>
+  </div>
+
+  <script>
+    const alumniList = <%- JSON.stringify(alumniList) %>;
+
+    function showAlumniDetails(alumniId) {
+      const alumni = alumniList.find(a => a._id === alumniId);
+      if (alumni) {
+        document.getElementById('alumni-name').textContent = alumni.name;
+        document.getElementById('alumni-age').textContent = 'Age: ' + alumni.age;
+        document.getElementById('alumni-gender').textContent = 'Gender: ' + alumni.gender;
+        document.getElementById('alumni-batch').textContent = 'Batch: ' + alumni.batch;
+        document.getElementById('alumni-branch').textContent = 'Branch: ' + alumni.branch;
+        document.getElementById('alumni-company').textContent = 'Company: ' + alumni.company;
+        document.getElementById('alumni-linkedin').setAttribute('href', alumni.linkedin);
+
+        document.getElementById('alumni-modal').classList.remove('hidden');
+      }
+    }
+
+    document.querySelector('.close').addEventListener('click', function() {
+      document.getElementById('alumni-modal').classList.add('hidden');
+    });
+
+    // Filtering logic
+    document.getElementById('apply-filters').addEventListener('click', function() {
+      const searchName = document.getElementById('search-name').value.toLowerCase();
+      const filterBatch = document.getElementById('filter-batch').value;
+      const filterBranch = document.getElementById('filter-branch').value;
+
+      const filteredAlumni = alumniList.filter(alumni => {
+        const matchesName = alumni.name.toLowerCase().includes(searchName);
+        const matchesBatch = !filterBatch || alumni.batch === filterBatch;
+        const matchesBranch = !filterBranch || alumni.branch === filterBranch;
+
+        return matchesName && matchesBatch && matchesBranch;
+      });
+
+      renderAlumniCards(filteredAlumni);
+    });
+
+    function renderAlumniCards(alumniArray) {
+      const alumniCardsContainer = document.getElementById('alumni-cards');
+      alumniCardsContainer.innerHTML = '';
+
+      alumniArray.forEach(alumni => {
+        const cardHTML = `
+          <div class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition duration-300">
+            <img src="${alumni.image}" alt="${alumni.name}" class="rounded-md w-full h-48 object-cover mb-4">
+            <h3 class="text-xl font-semibold mt-2">${alumni.name}</h3>
+            <p class="text-gray-600">Batch: ${alumni.batch}</p>
+            <p class="text-gray-600">Branch: ${alumni.branch}</p>
+            <p class="text-gray-600">Company: ${alumni.company}</p>
+            <a href="${alumni.linkedin}" target="_blank" class="text-blue-500 mt-2 block hover:underline">LinkedIn Profile</a>
+            <button onclick="showAlumniDetails('${alumni._id}')" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-2 hover:bg-blue-600 transition">View Details</button>
+          </div>
+        `;
+        alumniCardsContainer.innerHTML += cardHTML;
+      });
+    }
+
+    // Initially render all alumni
+    renderAlumniCards(alumniList);
+  </script>
+</body>
+</html>
