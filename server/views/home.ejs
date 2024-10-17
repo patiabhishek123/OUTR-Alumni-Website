@@ -1,21 +1,654 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Home Page</title>
-    <style type="text/css" media="screen">
-      body {
-        background-color: skyblue;
-        text-decoration-color: white;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/2af254fe4c.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Alumni Website</title>
   </head>
-  <body>
-    <p>Hobbies of <%=data.name%> are:</p>
-    <ol>
-      <li><%=data.hobbies[0]%></li>
-      <li><%=data.hobbies[1]%></li>
-      <li><%=data.hobbies[2]%></li>
-    </ol>
-    <p>Hello World</p>
+  <body class="bg-[#efece5]">
+    <div class="sticky top-0 bg-white drop-shadow-xl backdrop-blur-3xl">
+      <nav class="flex justify-between items-center px-2 py-4">
+        <div class="flex items-center">
+          <img
+            class="w-20"
+            src="https://upload.wikimedia.org/wikipedia/en/b/bd/Odisha_University_of_Technology_and_Research_Logo.png"
+            alt="..."
+          />
+          <div class="ml-2 leading-5">
+            <p class="font-semibold text-violet-900">
+              Odisha University of Technology and Research
+            </p>
+            <p class="font-semibold text-violet-900">
+              Bhubaneswar (Formerly CET Bhubaneswar)
+            </p>
+            <p class="text-gray-500">Alumni Association</p>
+          </div>
+        </div>
+        <div class="flex justify-between items-center">
+          <div
+            class="nav-links lg:static absolute lg:min-h-fit bg-slate-100 lg:bg-white right-0 top-[-1000%] lg:w-auto w-full flex items-start justify-center px-5"
+          >
+            <ul
+              class="flex lg:flex-row flex-col lg:items-center items-center lg:gap-[2vw] gap-8 text-lg lg:text-sm xl:text-lg font-bold my-8"
+            >
+              <li>
+                <span><a href="#">ABOUT US</a></span>
+              </li>
+              <li>
+                <a href="#">GIVING BACK</a>
+              </li>
+              <li>
+                <a href="#">CHAPTERS</a>
+              </li>
+              <li>
+                <a href="#">MEMBERS</a>
+              </li>
+              <li>
+                <a href="#">ALUMNI ASSIST</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center">
+            <i
+              class="fa-solid fa-magnifying-glass ml-2 px-4 py-3 bg-white text-2xl cursor-pointer"
+            ></i>
+            <ion-icon
+              onclick="onToggleMenu(this)"
+              name="menu"
+              class="ml-2 px-4 py-4 bg-white text-3xl cursor-pointer lg:hidden"
+            ></ion-icon>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div
+      class="h-96 w-full bg-red-500"
+      style="
+        background: bottom/cover url('../img/college.jpg');
+        object-fit: cover;
+      "
+    >
+      <div class="ml-4 pt-4">
+        <p class="text-white text-3xl font-bold">Where You Belong</p>
+        <p class="w-1/2 lg:w-1/4 text-white text-lg font-semibold leading-5">
+          Welcome to the Odisha University of Technology and Research
+          Bhubaneswar (Formerly CET Bhubaneswar)
+        </p>
+      </div>
+    </div>
+    <div
+      class="w-full px-8 py-4 bg-blue-800 flex justify-center items-center text-white"
+    >
+      <p class="underline font-semibold lg:text-xl">
+        Learn about the progress of the OUTRTogether campaign.
+      </p>
+      <i class="fa-solid fa-arrow-right ml-2 pt-1"></i>
+    </div>
+
+    <div class="p-16 flex flex-col gap-24 lg:flex-row items-center">
+      <div
+        class="h-96 w-full bg-white flex flex-col gap-2.5 justify-center items-center border-b-8 border-blue-800"
+      >
+        <i class="fa-regular fa-calendar-days text-blue-800 text-5xl"></i>
+        <div class="flex flex-col gap-8">
+          <div class="mx-5 text-center">
+            <p class="text-3xl font-bold text-blue-800">Attend an event</p>
+            <p>Learn, engage, and celebrate with fellow OUTRians.</p>
+          </div>
+          <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">
+            Find Events
+          </button>
+        </div>
+      </div>
+      <div
+        class="h-96 w-full bg-white flex flex-col gap-2.5 justify-center items-center border-b-8 border-blue-800"
+      >
+        <i class="fa-solid fa-sheet-plastic text-blue-800 text-5xl"></i>
+        <div class="flex flex-col gap-8">
+          <div class="mx-5 text-center">
+            <p class="text-3xl font-bold text-blue-800">Share you talent</p>
+            <p>Be ever true. Volunteer your time and expertise</p>
+          </div>
+          <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">
+            Find Oppurtunities
+          </button>
+        </div>
+      </div>
+      <div
+        class="h-96 w-full bg-white flex flex-col gap-2.5 justify-center items-center border-b-8 border-blue-800"
+      >
+        <i class="fa-solid fa-church text-blue-800 text-6xl"></i>
+        <div class="flex flex-col gap-8">
+          <div class="mx-5 text-center">
+            <p class="text-3xl font-bold text-blue-800">Explore communities</p>
+            <p>
+              Expand your OUTR experience by club, class, affinity, or cause.
+            </p>
+          </div>
+          <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">
+            Find Communities
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-20 mb-10 flex justify-center items-center">
+      <div
+        class="h-[80vw] w-full max-h-[600px] max-w-[600px] p-8 bg-blue-800 rounded-3xl"
+      >
+        <div
+          class="h-full w-full p-4 rounded-xl flex justify-center items-center"
+          style="
+            background: center/cover
+              url('https://us.123rf.com/450wm/fizkes/fizkes2005/fizkes200501934/147608157-lot-of-happy-multiracial-people-looking-at-camera-in-square-collage-mosaic-many-smiling-multiethnic.jpg');
+            object-fit: cover;
+          "
+        >
+          <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">
+            Find your Alma-Mater
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="my-8 p-8 bg-white flex flex-col justify-center items-center gap-y-5"
+    >
+      <p class="text-3xl font-bold text-blue-800">OUTRTogether</p>
+      <p class="w-3/5 text-center leading-5">
+        You can support OUTR students and faculty in a variety of ways and help
+        the University sustain and build on our excellence.
+      </p>
+      <button class="mx-10 px-5 py-4 bg-blue-800 text-white font-bold">
+        Learn More
+      </button>
+    </div>
+
+    <div class="bg-blue-800 text-white">
+      <!-- <footer class="w-full grow-0 relative">
+        <div
+          class="w-full local-footer print:hidden bg-black text-white no-underline border-b border-black"
+        >
+          <div
+            class="pt-10 pb-6 bg-cover bg-no-repeat bg-center"
+            style="
+              background-image: linear-gradient(
+                  rgba(0, 0, 0, 0),
+                  rgba(24, 29, 28)
+                ),
+                url('https://assets.stanford.edu/i/filters:quality(60)/f/103430/1999x1000/69c797554b/campus-sunset-2x1-2000.jpg');
+            "
+          >
+            <a aria-current="page" class="logo block w-fit" href="/"
+              ><img
+                src="/static/saa-logo-white-60c4ed2e1cacf3b7e476858e65cecb27.svg"
+                class="w-200 md:w-300 2xl:w-[350px]"
+                alt="Stanford Alumni Association"
+                width="260"
+                height="38"
+            /></a>
+          </div>
+          <div class="pb-5">
+            <div class="grid grid-cols-6 gap-y-xl sm:gap-x-lg md:gap-x-xl">
+              <div
+                class="col-span-6 sm:col-span-3 md:col-span-2 2xl:col-span-3"
+              >
+                <div class="font-semibold pb-[2em]">
+                  <strong>Stanford Alumni Association</strong>
+                </div>
+                <address>
+                  <div class="pb-[2em]">Frances C. Arrillaga Alumni Center</div>
+                  <div class="pb-[2em]">326 Galvez Street</div>
+                  <div class="pb-[2em]">Stanford, CA 94305-6105</div>
+                </address>
+                <div
+                  class="block print:hidden text-left text-[1.9rem] md:text-[2rem] xl:text-[2.1rem]"
+                >
+                  <a
+                    href="https://www.google.com/maps/place/Frances%20C.%20Arrillaga%20Alumni%20Center/@37.430725,-122.1648,15z/data=!4m5!3m4!1s0x0:0x778a60994d7a5e4c!8m2!3d37.430725!4d-122.1648?shorturl=1"
+                    class="flex w-fit group transition-colors no-underline underline-offset-[3px] hocus:underline text-white-20 hocus:text-white-20 !decoration-digital-red-xlight"
+                    rel="nofollow noopener"
+                    ><div>
+                      Map<span class="sr-only"> on Google</span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        class="transition w-[8em] ml-[2em] -rotate-45 group-hocus:-rotate-45 transform-gpu group-hocus:translate-x-[1em] group-hocus:-translate-y-[1em] inline-block text-digital-red-xlight group-hocus:text-white-20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                    <span class="sr-only"> (external link)</span></a
+                  >
+                </div>
+                <ul class="flex list-unstyled mt-4">
+                  <li class="mr-[1em]">
+                    <a
+                      href="https://www.facebook.com/stanfordalumni"
+                      class="text-white-20 hocus:text-facebook transition-colors"
+                      ><svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fab"
+                        data-icon="facebook-f"
+                        class="svg-inline--fa fa-facebook-f fa-lg"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+                        ></path></svg
+                      ><span class="sr-only">Facebook Page</span></a
+                    >
+                  </li>
+                  <li class="mr-[1em]">
+                    <a
+                      href="https://www.linkedin.com/groups/74186/"
+                      class="text-white-20 hocus:text-linkedin transition-colors"
+                      ><svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fab"
+                        data-icon="linkedin-in"
+                        class="svg-inline--fa fa-linkedin-in fa-lg"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
+                        ></path></svg
+                      ><span class="sr-only">LinkedIn Page</span></a
+                    >
+                  </li>
+                  <li class="mr-[1em]">
+                    <a
+                      href="https://twitter.com/stanfordalumni"
+                      class="text-white-20 hocus:text-twitter transition-colors"
+                      ><svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fab"
+                        data-icon="twitter"
+                        class="svg-inline--fa fa-twitter fa-lg"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+                        ></path></svg
+                      ><span class="sr-only">Twitter Page</span></a
+                    >
+                  </li>
+                  <li class="mr-[1em]">
+                    <a
+                      href="https://www.instagram.com/stanfordalumni"
+                      class="text-white-20 hocus:text-instagram transition-colors"
+                      ><svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fab"
+                        data-icon="instagram"
+                        class="svg-inline--fa fa-instagram fa-lg"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                        ></path></svg
+                      ><span class="sr-only">Instagram Page</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.youtube.com/user/StanfordAlumni/"
+                      class="text-white-20 hocus:text-youtube transition-colors"
+                      ><svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fab"
+                        data-icon="youtube"
+                        class="svg-inline--fa fa-youtube fa-lg"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 576 512"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+                        ></path></svg
+                      ><span class="sr-only">Youtube Channel</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="col-span-6 sm:col-span-3 md:col-span-4 2xl:col-span-3 link-black-20 underline-offset-[3px] !link-underline-digital-red-xlight"
+              >
+                <nav
+                  class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mb-4 gap-x-lg gap-y-2xl children:text-white-20"
+                  aria-label="Alumni Links"
+                >
+                  <div>
+                    <ul class="list-unstyled link-regular text-19 xl:text-20">
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/about/"
+                          >Get to Know SAA</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://stanfordmag.org/"
+                          class="group no-underline hover:underline focus:underline"
+                          >STANFORD Magazine<span class="sr-only">
+                            (external link)</span
+                          ></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/about/contact/"
+                          >Contact Us</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/help/"
+                          >Help</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul class="list-unstyled link-regular text-19 xl:text-20">
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/membership/saacard/"
+                          >Access SAA Member Card</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://cardinalalumni.stanford.edu/tools/mail?level=12&amp;groupname=saa&amp;pgOrg=saa&amp;dbc=y"
+                          class="group no-underline hover:underline focus:underline"
+                          >Check your alumni email<span class="sr-only">
+                            (external link)</span
+                          ></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://myaccount.stanford.edu/"
+                          class="group no-underline hover:underline focus:underline"
+                          >My Alumni Account<span class="sr-only">
+                            (external link)</span
+                          ></a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://giving.stanford.edu/"
+                          class="group no-underline hover:underline focus:underline"
+                          >Give to Stanford<span class="sr-only">
+                            (external link)</span
+                          ></a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <ul class="list-unstyled link-regular text-19 xl:text-20">
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/accessibility/"
+                          >Accessibility</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/privacy/"
+                          >Privacy Policy</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/terms/"
+                          >Terms of Use</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          class="group no-underline hover:underline focus:underline"
+                          href="/code-of-conduct/"
+                          >Code of Conduct</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="global-footer basefont-20 py-1 bg-saa-black text-white print:hidden"
+        >
+          <div
+            class="flex flex-col lg:flex-row"
+            title="Common Stanford resources"
+          >
+            <div class="text-center mt-5 mb-9">
+              <a
+                class="logo text-white hocus:text-white type-3"
+                href="https://www.stanford.edu"
+                aria-hidden="true"
+                tabindex="-1"
+                >Stanford<br />University</a
+              >
+            </div>
+            <div
+              class="lg:pl-45 xl:pl-50 text-left sm:text-center lg:text-left grow"
+            >
+              <nav
+                aria-label="global footer menu"
+                class="flex flex-row sm:flex-col justify-center sm:items-center lg:items-start mb-10"
+              >
+                <ul
+                  class="list-unstyled mb-10 sm:mb-4 mr-19 sm:mr-0 p-0 text-15 md:text-17 2xl:text-18 flex flex-col sm:flex-row"
+                >
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://www.stanford.edu"
+                      class="text-white no-underline hocus:underline hocus:text-white"
+                      >Stanford Home<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://visit.stanford.edu/plan/"
+                      class="text-white no-underline hocus:underline hocus:text-white"
+                      >Maps &amp; Directions<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://www.stanford.edu/search/"
+                      class="text-white no-underline hocus:underline hocus:text-white"
+                      >Search Stanford<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://emergency.stanford.edu"
+                      class="text-white no-underline hocus:underline hocus:text-white"
+                      >Emergency Info<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                </ul>
+                <ul
+                  class="list-unstyled mb-10 sm:mb-0 ml-19 sm:ml-0 p-0 text-15 sm:text-14 md:text-15 xl:text-16 flex flex-col sm:flex-row"
+                >
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://www.stanford.edu/site/terms/"
+                      title="Terms of use for sites"
+                      class="text-white no-underline hocus:underline hocus:text-white sm:font-normal"
+                      >Terms of Use<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://www.stanford.edu/site/privacy/"
+                      title="Privacy and cookie policy"
+                      class="text-white no-underline hocus:underline hocus:text-white sm:font-normal"
+                      >Privacy<span class="sr-only">(link is external)</span></a
+                    >
+                  </li>
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://uit.stanford.edu/security/copyright-infringement"
+                      title="Report alleged copyright infringement"
+                      class="text-white no-underline hocus:underline hocus:text-white sm:font-normal"
+                      >Copyright<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://adminguide.stanford.edu/chapter-1/subchapter-5/policy-1-5-4"
+                      title="Ownership and use of Stanford trademarks and images"
+                      class="text-white no-underline hocus:underline hocus:text-white sm:font-normal"
+                      >Trademarks<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                  <li class="sm:mr-10 md:mr-20 lg:mr-27">
+                    <a
+                      href="https://non-discrimination.stanford.edu/"
+                      title="Non-discrimination policy"
+                      class="text-white no-underline hocus:underline hocus:text-white sm:font-normal"
+                      >Non-Discrimination<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.stanford.edu/site/accessibility"
+                      title="Report web accessibility issues"
+                      class="text-white no-underline hocus:underline hocus:text-white sm:font-normal"
+                      >Accessibility<span class="sr-only"
+                        >(link is external)</span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </nav>
+              <div class="text-13 sm:text-14 text-center lg:text-left">
+                <span class="whitespace-no-wrap">© Stanford University.</span
+                ><span class="whitespace-no-wrap"
+                  >&nbsp; Stanford, California 94305.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer> -->
+      <footer class="flex flex-col p-6 gap-y-8">
+        <div class="flex items-center">
+          <img
+            class="w-28"
+            src="https://upload.wikimedia.org/wikipedia/en/b/bd/Odisha_University_of_Technology_and_Research_Logo.png"
+            alt="..."
+          />
+          <div class="ml-2 leading-5">
+            <p class="font-semibold text-white text-lg">
+              Odisha University of Technology and Research
+            </p>
+            <p class="font-semibold text-white text-lg">
+              Bhubaneswar (Formerly CET Bhubaneswar)
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-x-8">
+          <div class="flex flex-col items-start gap-y-2">
+            <div class="flex flex-col gap-y-4 pb-4 border-b-[0.5px]">
+              <p>Ghatikia, Mahalaxmi Vihar<br>Bhubaneswar-751029, India</p>
+              <p>Website: www.outr.ac.in</p>
+            </div>
+            <div>
+              <div>
+                <i class="fa-brands fa-facebook px-2 py-2 text-lg"></i>
+                <i class="fa-brands fa-x-twitter px-2 py-2 text-lg"></i>
+                <i class="fa-brands fa-instagram px-2 py-2 text-lg"></i>
+                <i class="fa-brands fa-youtube px-2 py-2 text-lg"></i>
+                <i class="fa-brands fa-linkedin px-2 py-2 text-lg"></i>
+              </div>
+              <div class="px-2 font-semibold">
+                <p>Social Media →</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-y-8"></div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const navLinks = document.querySelector(".nav-links");
+
+      function onToggleMenu(e) {
+        e.name = e.name === "menu" ? "close" : "menu";
+        navLinks.classList.toggle("top-[100%]");
+        console.log(navLinks.classList);
+      }
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
